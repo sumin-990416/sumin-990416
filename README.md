@@ -2,11 +2,16 @@
 ## 공부 중
 <img src="https://img.shields.io/badge/python-3776AB?style=flat-square&logo=python&logoColor=white">  <img src="https://img.shields.io/badge/pytorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white"/>
 
- 
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=sumin-990416&theme=ambient_gradient)](https://github.com/anuraghazra/github-readme-stats)
+## 나의 백준 등급
+<p align="center">
+  <a href="https://solved.ac/jsm4378/">
+    <img src="http://mazassumnida.wtf/api/v2/generate_badge?boj=jsm4378"/>
+  </a>
+  &nbsp;&nbsp;&nbsp; <!-- 이미지 간 간격 조절 -->
+  <img src="http://mazandi.herokuapp.com/api?handle=jsm4378&theme=cold"/>
+</p>
 
-[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=jsm4378)](https://solved.ac/jsm4378/)
-
+## 나의 노력
 ![aa](./profile-3d-contrib/profile-south-season-animate.svg)
 
 
