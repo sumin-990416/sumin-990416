@@ -14,14 +14,23 @@ API_KEY = os.getenv("GEMINI_API_KEY")
 SUPPORTED_EXTENSIONS = [".py", ".java", ".cpp", ".js", ".kt"]
 
 
+# 1. 환경 변수에서 API 키를 안전하게 불러옵니다.
+API_KEY = os.getenv("GEMINI_API_KEY")
+
+# 2. 지원할 프로그래밍 언어의 파일 확장자 목록입니다.
+SUPPORTED_EXTENSIONS = [".py", ".java", ".cpp", ".js", ".kt"]
+
+
 def analyze_code_with_gemini(code_content: str, language: str) -> str:
     """Gemini API를 호출하여 코드 분석을 요청하고, 그 결과를 받아오는 함수."""
-    print("🤖 Gemini AI가 코드를 실시간으로 분석 중입니다... (네트워크 상황에 따라 시간이 걸릴 수 있습니다)")
+    print("🤖 Gemini AI가 코드를 실시간으로 분석 중입니다... (최신 모델: gemini-1.5-flash-latest)")
     
     try:
         genai.configure(api_key=API_KEY)
-        model = genai.GenerativeModel('gemini-pro')
+        # <<< 모델을 최신 버전으로 변경 >>>
+        model = genai.GenerativeModel('gemini-1.5-flash-latest')
         
+        # AI에게 내릴 구체적인 명령 (프롬프트)
         prompt = f"""
         당신은 백준 알고리즘 풀이 분석 전문가입니다.
         아래 {language} 코드는 백준 온라인 저지 문제의 정답 코드입니다.
@@ -46,6 +55,7 @@ def analyze_code_with_gemini(code_content: str, language: str) -> str:
         
     except Exception as e:
         return f"### ❌ AI 분석 실패\n- 오류: {e}\n- API 키가 정확한지, 환경 변수 설정이 올바르게 되었는지 확인해주세요."
+
 
 # ... (create_readme 함수와 main 함수 나머지 부분은 이전과 동일합니다) ...
 # ... (이전 답변의 나머지 함수 코드를 여기에 붙여넣으세요) ...
