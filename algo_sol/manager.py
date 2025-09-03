@@ -60,37 +60,59 @@ def analyze_code_with_gemini(code_content: str, language: str) -> str:
 # ... (create_readme 함수와 main 함수 나머지 부분은 이전과 동일합니다) ...
 # ... (이전 답변의 나머지 함수 코드를 여기에 붙여넣으세요) ...
 
+# manager.py 파일의 이 함수만 교체하면 됩니다.
+
 def create_readme(info: dict, summary: str, code: str) -> str:
-    """README.md 파일의 전체 내용을 생성합니다."""
-    return f"""#  Baekjoon {info['number']}: {info['title']}
+    """README.md 파일의 전체 내용을 생성합니다. (디자인 개선 버전)"""
+    
+    # --- 난이도 뱃지 생성 로직 ---
+    # 난이도 문자열(예: "Silver 4")을 공백으로 분리
+    try:
+        tier, level = info['level'].replace("실버", "Silver").replace("골드", "Gold").replace("브론즈", "Bronze").split()
+        # 뱃지 색상 맵
+        color_map = {
+            "Bronze": "B56A3C",
+            "Silver": "949393",
+            "Gold": "E5A323",
+            "Platinum": "52E2A8",
+            "Diamond": "48A5FF",
+            "Ruby": "FF537E"
+        }
+        badge_color = color_map.get(tier, "lightgrey")
+        # 뱃지 이미지 URL 생성
+        badge = f"![{info['level']}](https://img.shields.io/badge/{tier}-{level}-{badge_color}?style=for-the-badge)"
+    except Exception:
+        # 난이도 파싱 실패 시 기본 텍스트 뱃지
+        badge = f"![{info['level']}](https://img.shields.io/badge/Difficulty-{info['level'].replace(' ', '%20')}-lightgrey?style=for-the-badge)"
+    # --- 뱃지 생성 로직 끝 ---
 
-    - **Solved Date**: {info['date']}
-    - **Problem Link**: [{info['link']}]({info['link']})
-    - **Difficulty**: {info['level']}
-    - **Algorithm**: {info['algo']}
+    # f-string의 들여쓰기 문제를 해결하고, 새로운 레이아웃을 적용
+    return f"""# 📝 Baekjoon {info['number']}: {info['title']}
 
-    ---
+| **Solved Date** | **Difficulty** | **Algorithm** | **Link** |
+|:---:|:---:|:---:|:---:|
+| {info['date']} | {badge} | `{info['algo']}` | [{info['number']}번 문제]({info['link']}) |
 
-    ## ✅ Solution Status
+<br/>
 
-    **Solved!** ✔️
+## ✨ AI Code Analysis
 
-    ---
+> AI가 요약한 핵심 아이디어 및 전략입니다.
 
-    ## 🤖 AI Code Analysis
+{summary}
 
-    {summary}
+<br/>
 
-    ---
+<details>
+<summary>💻 My Code (Click to expand)</summary>
 
-    ## 💻 My Code
+````{info['language']}
+# Baekjoon Problem {info['number']}: {info['title']}
+# {info['link']}
 
-    ```{info['language']}
-    # Baekjoon Problem {info['number']}: {info['title']}
-    # {info['link']}
-
-    {code.strip()}
-    """
+{code.strip()}
+</details>
+"""
 
 def main():
     """스크립트의 메인 실행 함수입니다."""
