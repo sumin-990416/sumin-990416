@@ -21,4 +21,4 @@
 ![aa](./profile-3d-contrib/profile-south-season-animate.svg)
 
 ## 나의 백준 현황
-[![BOJ TANDI] (https://randi.so/api/v1/boj?handle=jsm4378)](https://solved.ac/jsm4378)
+[![BOJ TANDI](https://randi.so/api/v1/boj?handle=jsm4378)](https://solved.ac/jsm4378)
