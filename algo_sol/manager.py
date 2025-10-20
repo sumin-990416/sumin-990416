@@ -17,12 +17,12 @@ SUPPORTED_EXTENSIONS = [".py", ".java", ".cpp", ".js", ".kt"]
 
 def analyze_code_with_gemini(code_content: str, language: str) -> str:
     """Gemini API를 호출하여 코드 분석을 요청하고, 그 결과를 받아오는 함수."""
-    print("🤖 Gemini AI가 코드를 실시간으로 분석 중입니다... (최신 모델: gemini-1.5-flash-latest)")
+    print("🤖 Gemini AI가 코드를 실시간으로 분석 중입니다... (최신 모델: gemini-flash-lite-latest)")
     
     try:
         genai.configure(api_key=API_KEY)
         # <<< 모델을 최신 버전으로 변경 >>>
-        model = genai.GenerativeModel('gemini-2.5-flash')
+        model = model = genai.GenerativeModel('gemini-flash-lite-latest')
         
         # AI에게 내릴 구체적인 명령 (프롬프트)
         prompt = f"""
