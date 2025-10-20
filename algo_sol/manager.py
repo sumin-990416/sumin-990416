@@ -4,16 +4,10 @@ import os
 import sys
 import subprocess
 import google.generativeai as genai
-
-# <<< 개선된 부분: 환경 변수에서 API 키를 안전하게 불러오기 >>>
-# 1. os 라이브러리를 import 합니다.
-# 2. os.getenv() 함수로 'GEMINI_API_KEY'라는 이름의 환경 변수를 찾습니다.
-API_KEY = os.getenv("GEMINI_API_KEY")
-
-# 지원할 프로그래밍 언어의 파일 확장자 목록
-SUPPORTED_EXTENSIONS = [".py", ".java", ".cpp", ".js", ".kt"]
+from dotenv import load_dotenv
 
 
+load_dotenv()
 # 1. 환경 변수에서 API 키를 안전하게 불러옵니다.
 API_KEY = os.getenv("GEMINI_API_KEY")
 
