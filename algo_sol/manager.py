@@ -22,7 +22,7 @@ def analyze_code_with_gemini(code_content: str, language: str) -> str:
     try:
         genai.configure(api_key=API_KEY)
         # <<< 모델을 최신 버전으로 변경 >>>
-        model = genai.GenerativeModel('gemini-1.5-flash-latest')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         
         # AI에게 내릴 구체적인 명령 (프롬프트)
         prompt = f"""
